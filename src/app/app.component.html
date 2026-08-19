@@ -1,0 +1,143 @@
+﻿<div class="app-shell">
+  <div class="global-loader" *ngIf="loading.isLoading$ | async" aria-live="polite" aria-busy="true">
+    <div class="loader-panel">
+      <div class="loader" aria-hidden="true">
+        <svg class="loader-car" width="102" height="40" viewBox="0 0 102 40" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(2 1)" stroke="#002742" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+            <path class="car__body" d="M47.293 2.375C52.927.792 54.017.805 54.017.805c2.613-.445 6.838-.337 9.42.237l8.381 1.863c2.59.576 6.164 2.606 7.98 4.531l6.348 6.732 6.245 1.877c3.098.508 5.609 3.431 5.609 6.507v4.206c0 .29-2.536 4.189-5.687 4.189H36.808c-2.655 0-4.34-2.1-3.688-4.67 0 0 3.71-19.944 14.173-23.902zM36.5 15.5h54.01" stroke-width="3"/>
+            <ellipse class="car__wheel--left" stroke-width="3.2" fill="#FFF" cx="83.493" cy="30.25" rx="6.922" ry="6.808"/>
+            <ellipse class="car__wheel--right" stroke-width="3.2" fill="#FFF" cx="46.511" cy="30.25" rx="6.922" ry="6.808"/>
+            <path class="car__line car__line--top" d="M22.5 16.5H2.475" stroke-width="3"/>
+            <path class="car__line car__line--middle" d="M20.5 23.5H.4755" stroke-width="3"/>
+            <path class="car__line car__line--bottom" d="M25.5 9.5h-19" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <header class="app-header">
+    <div class="brand">
+      <app-logo [size]="44" class="brand-logo"></app-logo>
+      <span class="brand-name">carShare</span>
+    </div>
+    <nav class="top-nav" *ngIf="current">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="current?.role==='passenger'">Home</a>
+      <a routerLink="/bookings" routerLinkActive="active" *ngIf="current?.role==='passenger'">Booked Rides <span class="badge" *ngIf="bookingsCount>0" style="margin-left:8px">{{bookingsCount}}</span></a>
+      <a routerLink="/profile" routerLinkActive="active" *ngIf="current?.role==='passenger'">Profile</a>
+      <a routerLink="/owner/dashboard" routerLinkActive="active" *ngIf="current?.role==='owner'">Dashboard</a>
+      <a *ngIf="current?.role==='owner'" routerLink="/owner/profile" routerLinkActive="active">Profile</a>
+      <a routerLink="/owner/my-rides" routerLinkActive="active" *ngIf="current?.role==='owner'">My Rides</a>
+      <!-- <a routerLink="/owner/create-ride" routerLinkActive="active" *ngIf="current?.role==='owner'">Create Ride</a> -->
+      <a routerLink="/owner/requests" routerLinkActive="active" *ngIf="current?.role==='owner'">Booking Requests</a>
+      <a routerLink="/support" routerLinkActive="active" *ngIf="current?.role !== 'admin'">Support</a>
+            <div class="nav-right">
+        <button class="btn btn-ghost" title="Notifications" (click)="toggleNotifications()">
+          🔔
+          <span class="badge" *ngIf="unreadCount>0" style="margin-left:6px">{{unreadCount}}</span>
+        </button>
+        <div class="notifications-dropdown" *ngIf="showNotifications" role="dialog" aria-label="Notifications">
+          <div class="nd-header">
+            <div class="nd-title">Notifications</div>
+            <button class="nd-action" (click)="markAllRead()">Mark all read</button>
+          </div>
+          <div class="nd-list" *ngIf="notifications?.length; else noNotifications">
+            <div class="nd-item" *ngFor="let n of notifications" [class.unread]="!n.read" (click)="onNotificationClick(n)">
+              <div class="nd-avatar">🔔</div>
+              <div class="nd-content">
+                <div class="nd-row">
+                  <div class="nd-title-text">{{n.title}}</div>
+                  <div class="nd-time muted-small">{{n.createdAt ? (n.createdAt | date:'short') : ''}}</div>
+                </div>
+                <div class="nd-body muted-small">{{n.body}}</div>
+              </div>
+              <button class="nd-mark" (click)="$event.stopPropagation(); markRead(n)">Mark</button>
+            </div>
+          </div>
+          <ng-template #noNotifications>
+            <div class="nd-empty">No notifications</div>
+          </ng-template>
+        </div>
+      </div>
+      <button class="btn btn-ghost" (click)="logout()">Logout</button>
+    </nav>
+    <!-- Mobile notification button (visible on small screens) -->
+    <div class="mobile-notif-container" *ngIf="current">
+      <button class="mobile-notif" title="Notifications" (click)="toggleNotifications()">
+        🔔
+        <span class="badge" *ngIf="unreadCount>0" style="margin-left:6px">{{unreadCount}}</span>
+      </button>
+      <div class="notifications-dropdown mobile" *ngIf="showNotifications" role="dialog" aria-label="Notifications">
+        <div class="nd-header">
+          <div class="nd-title">Notifications</div>
+          <button class="nd-action" (click)="markAllRead()">Mark all read</button>
+        </div>
+        <div class="nd-list" *ngIf="notifications?.length; else noNotificationsMobile">
+          <div class="nd-item" *ngFor="let n of notifications" [class.unread]="!n.read" (click)="onNotificationClick(n)">
+            <div class="nd-avatar">🔔</div>
+            <div class="nd-content">
+              <div class="nd-row">
+                <div class="nd-title-text">{{n.title}}</div>
+                <div class="nd-time muted-small">{{n.createdAt ? (n.createdAt | date:'short') : ''}}</div>
+              </div>
+              <div class="nd-body muted-small">{{n.body}}</div>
+            </div>
+            <button class="nd-mark" (click)="$event.stopPropagation(); markRead(n)">Mark</button>
+          </div>
+        </div>
+        <ng-template #noNotificationsMobile>
+          <div class="nd-empty">No notifications</div>
+        </ng-template>
+      </div>
+    </div>
+    <!-- Hamburger for mobile (only when logged in) -->
+    <button *ngIf="current" class="hamburger" aria-label="Open menu" (click)="menuOpen = !menuOpen">
+      ☰
+    </button>
+    <div class="mobile-menu" *ngIf="current && menuOpen">
+      <ul>
+        <li *ngIf="current?.role==='passenger'"><a (click)="navigate('/home')">Home</a></li>
+        <li *ngIf="current?.role==='passenger'"><a (click)="navigate('/bookings')">Booked Rides</a></li>
+        <li *ngIf="current?.role==='passenger'"><a (click)="navigate('/profile')">Profile</a></li>
+        <li *ngIf="current?.role==='owner'"><a (click)="navigate('/owner/dashboard')">Dashboard</a></li>
+        <li *ngIf="current?.role==='owner'"><a (click)="navigate('/owner/profile')">Profile</a></li>
+        <li *ngIf="current?.role==='owner'"><a (click)="navigate('/owner/my-rides')">My Rides</a></li>
+        <li *ngIf="current?.role==='owner'"><a (click)="navigate('/owner/requests')">Booking Requests</a></li>
+        <li *ngIf="current?.role !== 'admin'"><a (click)="navigate('/support')">Support</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="sub-banner" *ngIf="isOwnerPaymentInReview">
+    <div class="container" style="display:flex;align-items:center;gap:10px;">
+      <span>✓ Your payment is being reviewed and will be approved in few minutes.</span>
+    </div>
+  </div>
+
+  <div class="sub-banner" *ngIf="isOwnerUnverified && !isOwnerPaymentInReview">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <span>⚠️ Subscription payment not done. Complete verification to post rides and receive bookings.</span>
+      <button class="btn btn-primary btn-sm" (click)="payNow()">Pay & Verify</button>
+    </div>
+  </div>
+
+  <main class="app-main">
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+  </main>
+
+    <app-toast></app-toast>
+
+    <nav class="bottom-nav" *ngIf="current">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="current?.role==='passenger'">
+        <span class="icon">🏠</span>
+        <span class="label">Home</span>
+      </a>
+      <a routerLink="/owner/dashboard" routerLinkActive="active" *ngIf="current?.role==='owner'">
+        <span class="icon">📊</span>
+        <span class="label">Dashboard</span>
+      </a>
+    </nav>
+</div>

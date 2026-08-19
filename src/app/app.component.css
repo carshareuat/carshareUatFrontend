@@ -1,0 +1,119 @@
+﻿.global-loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  pointer-events: none;
+}
+
+.global-loader > * {
+  position: relative;
+  z-index: 1;
+}
+
+.loader-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  min-height: 92px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 39, 66, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 39, 66, 0.16);
+}
+
+.loader {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-car {
+  overflow: visible;
+}
+
+.loader-car .car__body {
+  animation: shake 0.2s ease-in-out infinite alternate;
+}
+
+.loader-car .car__line {
+  transform-origin: center right;
+  stroke-dasharray: 22;
+  animation: line 0.8s ease-in-out infinite;
+  animation-fill-mode: both;
+}
+
+.loader-car .car__line--middle { animation-delay: 0.2s; }
+.loader-car .car__line--bottom { animation-delay: 0.4s; }
+
+@keyframes shake {
+  0% { transform: translateY(-1%); }
+  100% { transform: translateY(3%); }
+}
+
+@keyframes line {
+  0%, 25% { stroke-dashoffset: 22; }
+  50%, 51% { stroke-dashoffset: 0; }
+  80%, 100% { stroke-dashoffset: -22; }
+}
+
+/* Notification dropdown styles */
+.nav-right { position: relative; }
+.notifications-dropdown {
+	position: absolute;
+	right: 0;
+	top: 46px;
+	width: 360px;
+	background: #fff;
+	border: 1px solid rgba(16,24,40,0.06);
+	box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+	border-radius: 10px;
+	overflow: hidden;
+	z-index: 1200;
+}
+.nd-header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #f1f5f9; background: linear-gradient(90deg,#f8fafc,#ffffff); }
+.nd-title { font-weight:700; color:#111827; }
+.nd-action { background:transparent; border:none; color:#6366f1; padding:6px 10px; border-radius:6px; cursor:pointer; }
+.nd-action:hover { background:rgba(99,102,241,0.08); }
+.nd-list { max-height:360px; overflow:auto; }
+.nd-item { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-bottom:1px solid #f8fafc; cursor:pointer; transition:background .12s ease; }
+.nd-item:hover { background:#fbfdff; }
+.nd-item.unread { background: linear-gradient(90deg, rgba(99,102,241,0.04), transparent); }
+.nd-avatar { width:44px; height:44px; border-radius:10px; background:linear-gradient(135deg,#eef2ff,#f8fafc); display:flex; align-items:center; justify-content:center; font-size:20px; }
+.nd-content { flex:1; min-width:0; }
+.nd-row { display:flex; justify-content:space-between; gap:8px; align-items:flex-start; }
+.nd-title-text { font-weight:600; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nd-time { font-size:12px; color:#6b7280; }
+.nd-body { margin-top:6px; color:#374151; font-size:13px; max-height:42px; overflow:hidden; text-overflow:ellipsis; }
+.nd-mark { background:#fff; border:1px solid #e5e7eb; padding:6px 8px; border-radius:8px; cursor:pointer; color:#374151; margin-left:8px; }
+.nd-mark:hover { background:#f8fafc; }
+.nd-empty { padding:20px; text-align:center; color:#6b7280; }
+.muted-small { color:#6b7280; font-size:13px; }
+
+/* Mobile notification button (shown on small screens) */
+.mobile-notif-container { display: inline-block; position: relative; margin-right: 8px; }
+.mobile-notif { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.12); color: white; border: none; font-size: 20px; }
+.notifications-dropdown.mobile { right: 12px; top: calc(var(--header-h) + 8px); width: 320px; }
+
+@media (min-width: 720px) {
+	.mobile-notif-container { display: none; }
+}
+
+/* Position mobile notif and hamburger at top-right on small screens */
+@media (max-width: 719px) {
+	.app-header { position: relative; }
+	.mobile-notif-container { position: absolute; right: 64px; top: calc(8px + var(--safe-top)); margin-right: 0; }
+	.mobile-notif { width: 40px; height: 40px; }
+	.hamburger { position: absolute; right: 12px; top: calc(8px + var(--safe-top)); margin-left: 0; z-index: 1300; }
+	/* ensure mobile menu floats above other dropdowns */
+	.mobile-menu { z-index: 1400; }
+	/* ensure notifications dropdown doesn't overflow off-screen */
+	.notifications-dropdown.mobile { right: 12px; left: auto; top: calc(var(--header-h) + 8px); }
+}
+

@@ -1,0 +1,1749 @@
+2026-08-14T12:20:38.555+05:30  INFO 18840 --- [carpool-backend] [main] com.carpool.CarpoolBackendApplication    : Starting CarpoolBackendApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 18840 (D:\Project\GIT SOURCE\carshareFrontend\carShare\target\backend-0.0.1-SNAPSHOT.jar started by AKumaresh in D:\Project\GIT SOURCE\carshareFrontend)
+2026-08-14T12:20:38.561+05:30 DEBUG 18840 --- [carpool-backend] [main] com.carpool.CarpoolBackendApplication    : Running with Spring Boot v3.3.4, Spring v6.1.13
+2026-08-14T12:20:38.561+05:30  INFO 18840 --- [carpool-backend] [main] com.carpool.CarpoolBackendApplication    : The following 1 profile is active: "local"
+2026-08-14T12:20:58.672+05:30  INFO 18840 --- [carpool-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-14T12:21:00.242+05:30  INFO 18840 --- [carpool-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1465 ms. Found 17 JPA repository interfaces.
+2026-08-14T12:21:13.321+05:30  INFO 18840 --- [carpool-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-08-14T12:21:13.404+05:30  INFO 18840 --- [carpool-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-14T12:21:13.404+05:30  INFO 18840 --- [carpool-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2026-08-14T12:21:13.652+05:30  INFO 18840 --- [carpool-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-14T12:21:13.652+05:30  INFO 18840 --- [carpool-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 34234 ms
+2026-08-14T12:21:16.838+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : Driver class org.h2.Driver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+org.springframework.boot.loader.launch.LaunchedClassLoader@6193b845
+
+2026-08-14T12:21:18.464+05:30  INFO 18840 --- [carpool-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-14T12:21:19.853+05:30  INFO 18840 --- [carpool-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-08-14T12:21:20.555+05:30  INFO 18840 --- [carpool-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-14T12:21:28.722+05:30  INFO 18840 --- [carpool-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-14T12:21:29.434+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - configuration:
+2026-08-14T12:21:29.434+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : allowPoolSuspension.............false
+2026-08-14T12:21:29.434+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : autoCommit......................true
+2026-08-14T12:21:29.434+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : catalog.........................none
+2026-08-14T12:21:29.434+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : connectionInitSql...............none
+2026-08-14T12:21:29.434+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : connectionTestQuery.............none
+2026-08-14T12:21:29.445+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : connectionTimeout...............30000
+2026-08-14T12:21:29.445+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSource......................none
+2026-08-14T12:21:29.446+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSourceClassName.............none
+2026-08-14T12:21:29.446+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSourceJNDI..................none
+2026-08-14T12:21:29.447+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSourceProperties............{password=<masked>}
+2026-08-14T12:21:29.447+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : driverClassName................."org.h2.Driver"
+2026-08-14T12:21:29.448+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : exceptionOverrideClassName......none
+2026-08-14T12:21:29.448+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : healthCheckProperties...........{}
+2026-08-14T12:21:29.449+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : healthCheckRegistry.............none
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : idleTimeout.....................600000
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : initializationFailTimeout.......1
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : isolateInternalQueries..........false
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : jdbcUrl.........................jdbc:h2:mem:carshare;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : keepaliveTime...................0
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : leakDetectionThreshold..........0
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : maxLifetime.....................1800000
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : maximumPoolSize.................10
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : metricRegistry..................none
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : metricsTrackerFactory...........none
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : minimumIdle.....................10
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : password........................<masked>
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : poolName........................"HikariPool-1"
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : readOnly........................false
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : registerMbeans..................false
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : scheduledExecutor...............none
+2026-08-14T12:21:29.450+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : schema..........................none
+2026-08-14T12:21:29.456+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : threadFactory...................internal
+2026-08-14T12:21:29.456+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : transactionIsolation............default
+2026-08-14T12:21:29.457+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : username........................"sa"
+2026-08-14T12:21:29.457+05:30 DEBUG 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariConfig           : validationTimeout...............5000
+2026-08-14T12:21:29.458+05:30  INFO 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-14T12:21:33.265+05:30  INFO 18840 --- [carpool-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.286+05:30  INFO 18840 --- [carpool-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-14T12:21:33.388+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+2026-08-14T12:21:33.388+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.426+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=2, active=1, idle=1, waiting=0)
+2026-08-14T12:21:33.426+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.466+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=3, active=1, idle=2, waiting=0)
+2026-08-14T12:21:33.466+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.504+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=4, active=1, idle=3, waiting=0)
+2026-08-14T12:21:33.504+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.544+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=5, active=1, idle=4, waiting=0)
+2026-08-14T12:21:33.544+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.583+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=6, active=1, idle=5, waiting=0)
+2026-08-14T12:21:33.583+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.621+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=7, active=1, idle=6, waiting=0)
+2026-08-14T12:21:33.623+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.660+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=8, active=1, idle=7, waiting=0)
+2026-08-14T12:21:33.660+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.699+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=9, active=1, idle=8, waiting=0)
+2026-08-14T12:21:33.699+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:carshare user=SA
+2026-08-14T12:21:33.738+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=10, active=1, idle=9, waiting=0)
+2026-08-14T12:21:33.738+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Connection not added, stats (total=10, active=1, idle=9, waiting=0)
+2026-08-14T12:21:34.109+05:30  WARN 18840 --- [carpool-backend] [main] org.hibernate.orm.incubating             : HHH90006001: Encountered incubating setting [hibernate.type.preferred_uuid_jdbc_type].  See javadoc on corresponding `org.hibernate.cfg.AvailableSettings` constant for details.
+2026-08-14T12:21:37.216+05:30  WARN 18840 --- [carpool-backend] [main] org.hibernate.orm.incubating             : HHH90006001: Encountered incubating setting [hibernate.type.preferred_uuid_jdbc_type].  See javadoc on corresponding `org.hibernate.cfg.AvailableSettings` constant for details.
+2026-08-14T12:21:49.470+05:30  INFO 18840 --- [carpool-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-14T12:21:50.016+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table audit_logs (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        action varchar(80) not null,
+        actor_id varchar(36) not null,
+        details varchar(1000) not null,
+        target_id varchar(36),
+        primary key (id)
+    )
+2026-08-14T12:21:50.071+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table bookings (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        cancellation_note varchar(500),
+        cancellation_reason varchar(255),
+        cancelled_at timestamp(6) with time zone,
+        cancelled_by enum ('ADMIN','OWNER','PASSENGER','SYSTEM'),
+        needs_rating boolean not null,
+        passenger_mobile varchar(20) not null,
+        rated boolean not null,
+        seats integer not null,
+        status enum ('ACCEPTED','CANCELLED','COMPLETED','PENDING','REJECTED') not null,
+        passenger_id char(36) not null,
+        ride_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.071+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table kyc_documents (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        mime_type varchar(100) not null,
+        private_file boolean not null,
+        size_bytes bigint not null,
+        storage_path varchar(500) not null,
+        type enum ('GOVERNMENT_ID','PROFILE_PHOTO') not null,
+        owner_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.071+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table locations (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        district varchar(150) not null,
+        state varchar(100) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.071+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table notifications (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        body varchar(1000) not null,
+        is_read boolean not null,
+        title varchar(255) not null,
+        type enum ('BOOKING_ACCEPTED','BOOKING_PENDING','BOOKING_REJECTED','KYC_VERIFICATION_RESULT','NEW_BOOKING_REQUEST','OWNER_RIDE_CANCELLATION','PASSENGER_CANCELLATION','RATING_AVAILABLE','RATING_RECEIVED','RIDE_COMPLETION','RIDE_POSTED','SUBSCRIPTION_PAYMENT_FAILURE','SUBSCRIPTION_PAYMENT_SUCCESS','SUBSCRIPTION_PENDING','TICKET_RAISED','TICKET_RESOLVED') not null,
+        user_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.071+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table owner_locations (
+        id char(36) not null,
+        latitude float(53) not null,
+        longitude float(53) not null,
+        owner_id char(36) not null,
+        updated_at timestamp(6) with time zone not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.091+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table owner_profiles (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        average_rating numeric(4,2) not null,
+        mobile varchar(20) not null,
+        name varchar(120) not null,
+        preferences varchar(1000),
+        profile_photo_url varchar(500),
+        ratings_count bigint not null,
+        verification_status enum ('PENDING','REJECTED','VERIFIED') not null,
+        verified boolean not null,
+        user_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.095+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table passenger_locations (
+        id char(36) not null,
+        latitude float(53) not null,
+        longitude float(53) not null,
+        passenger_id char(36) not null,
+        updated_at timestamp(6) with time zone not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.100+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table push_subscriptions (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        auth varchar(500),
+        endpoint varchar(1000),
+        p256dh varchar(500),
+        user_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.106+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table ratings (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        note varchar(500),
+        rating integer not null,
+        booking_id char(36) not null,
+        owner_id char(36) not null,
+        passenger_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.107+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table refresh_tokens (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        expires_at timestamp(6) with time zone not null,
+        ip_address varchar(45),
+        revoked boolean not null,
+        token_hash varchar(128) not null,
+        user_agent varchar(255),
+        user_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.109+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table rides (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        available_seats integer not null,
+        cancellation_note varchar(500),
+        cancellation_reason varchar(255),
+        cancelled_at timestamp(6) with time zone,
+        car_model varchar(100),
+        date date not null,
+        end_time time(6) not null,
+        female_only boolean not null,
+        from_location varchar(150) not null,
+        price numeric(10,2) not null,
+        start_time time(6) not null,
+        status enum ('ACTIVE','CANCELLED','COMPLETED') not null,
+        to_location varchar(150) not null,
+        total_seats integer not null,
+        owner_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.110+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table subscription_plans (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        active boolean not null,
+        amount_paise integer not null,
+        code varchar(40) not null,
+        currency varchar(10) not null,
+        description varchar(500),
+        duration_months integer not null,
+        name varchar(120) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.113+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table subscriptions (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        amount integer not null,
+        currency varchar(10) not null,
+        expires_at timestamp(6) with time zone,
+        payment_date timestamp(6) with time zone,
+        provider enum ('MOCK','RAZORPAY') not null,
+        provider_payment_id varchar(120),
+        rejection_comment varchar(500),
+        reviewed_at timestamp(6) with time zone,
+        starts_at timestamp(6) with time zone,
+        status enum ('CREATED','EXPIRED','FAILED','INACTIVE','PAID','PENDING','REFUNDED','REJECTED','VERIFICATION_IN_PROGRESS') not null,
+        utr_number varchar(80),
+        owner_id char(36) not null,
+        plan_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.115+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table ticket_categories (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        code varchar(80) not null,
+        for_role varchar(255),
+        label varchar(255) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.117+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table tickets (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        category varchar(120),
+        description varchar(1000),
+        image_path varchar(255),
+        resolution varchar(1000),
+        status varchar(40),
+        user_id char(36) not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.117+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    create table users (
+        id char(36) not null,
+        created_at timestamp(6) with time zone not null,
+        updated_at timestamp(6) with time zone not null,
+        active boolean not null,
+        age integer,
+        date_of_birth date,
+        gender varchar(10),
+        mobile varchar(20) not null,
+        name varchar(120),
+        password_hash varchar(255),
+        role enum ('ADMIN','OWNER','PASSENGER') not null,
+        primary key (id)
+    )
+2026-08-14T12:21:50.128+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists owner_profiles 
+       drop constraint if exists UKaltmo9jf92tpan6fmv0rmdm2j
+2026-08-14T12:21:50.128+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists owner_profiles 
+       add constraint UKaltmo9jf92tpan6fmv0rmdm2j unique (user_id)
+2026-08-14T12:21:50.128+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists ratings 
+       drop constraint if exists UK5k3aadb6pujfi128ev8urriab
+2026-08-14T12:21:50.128+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists ratings 
+       add constraint UK5k3aadb6pujfi128ev8urriab unique (booking_id)
+2026-08-14T12:21:50.128+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists refresh_tokens 
+       drop constraint if exists UKo2mlirhldriil2y7krapq4frt
+2026-08-14T12:21:50.128+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists refresh_tokens 
+       add constraint UKo2mlirhldriil2y7krapq4frt unique (token_hash)
+2026-08-14T12:21:50.140+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists subscription_plans 
+       drop constraint if exists UK95fpyxycxc00w3yabipw8jrq7
+2026-08-14T12:21:50.141+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists subscription_plans 
+       add constraint UK95fpyxycxc00w3yabipw8jrq7 unique (code)
+2026-08-14T12:21:50.142+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists users 
+       drop constraint if exists UK63cf888pmqtt5tipcne79xsbm
+2026-08-14T12:21:50.142+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists users 
+       add constraint UK63cf888pmqtt5tipcne79xsbm unique (mobile)
+2026-08-14T12:21:50.143+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       add constraint FKbs38on6lm5em0mmwv44g0hn68 
+       foreign key (passenger_id) 
+       references users
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       add constraint FK63tra4deifdhf1rnondk65i3r 
+       foreign key (ride_id) 
+       references rides
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists kyc_documents 
+       add constraint FKh4q154s5tigekrn15dsigy1f5 
+       foreign key (owner_id) 
+       references owner_profiles
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists notifications 
+       add constraint FK9y21adhxn0ayjhfocscqox7bh 
+       foreign key (user_id) 
+       references users
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists owner_profiles 
+       add constraint FKmgtitb2rqd11m3rbp9wwfnes3 
+       foreign key (user_id) 
+       references users
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists push_subscriptions 
+       add constraint FK1v577hpc7v9mdrm2uyk6kqgnl 
+       foreign key (user_id) 
+       references users
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists ratings 
+       add constraint FKkp31uofkhlk6pvyvmu3xcblkk 
+       foreign key (booking_id) 
+       references bookings
+2026-08-14T12:21:50.185+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists ratings 
+       add constraint FKcdqpocfqjopo4te25thtkbvox 
+       foreign key (owner_id) 
+       references owner_profiles
+2026-08-14T12:21:50.194+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists ratings 
+       add constraint FKsdcw9sll4sepneg5qa6hei888 
+       foreign key (passenger_id) 
+       references users
+2026-08-14T12:21:50.195+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists refresh_tokens 
+       add constraint FK1lih5y2npsf8u5o3vhdb9y0os 
+       foreign key (user_id) 
+       references users
+2026-08-14T12:21:50.197+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists rides 
+       add constraint FKok7alks1ogxuloeh86tcy89ce 
+       foreign key (owner_id) 
+       references owner_profiles
+2026-08-14T12:21:50.198+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists subscriptions 
+       add constraint FK3es375b43wn52v8dq4kjcqmvt 
+       foreign key (owner_id) 
+       references owner_profiles
+2026-08-14T12:21:50.199+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists subscriptions 
+       add constraint FKg41f5iev0mretaqhvepf0lks0 
+       foreign key (plan_id) 
+       references subscription_plans
+2026-08-14T12:21:50.199+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    alter table if exists tickets 
+       add constraint FK4eqsebpimnjen0q46ja6fl2hl 
+       foreign key (user_id) 
+       references users
+2026-08-14T12:21:50.221+05:30  INFO 18840 --- [carpool-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-14T12:21:54.288+05:30 DEBUG 18840 --- [carpool-backend] [main] com.carpool.security.RateLimitFilter     : Filter 'rateLimitFilter' configured for use
+2026-08-14T12:21:54.288+05:30 DEBUG 18840 --- [carpool-backend] [main] com.carpool.security.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2026-08-14T12:21:55.313+05:30 DEBUG 18840 --- [carpool-backend] [main] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@82112153 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:21:57.834+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        locations l1_0
+2026-08-14T12:21:58.007+05:30 DEBUG 18840 --- [carpool-backend] [main] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@82112153 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:21:58.575+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.665+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.665+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.665+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.665+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.673+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.673+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.673+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.673+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.677+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.677+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.680+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.681+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.682+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.683+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.684+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.684+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.684+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.684+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.684+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.689+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.690+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.690+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.691+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.691+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.693+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.694+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.694+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.694+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.694+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.698+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.699+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.699+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.700+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.700+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.701+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.702+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.702+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.704+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.705+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.707+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.708+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.708+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.709+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.710+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.712+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.712+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.712+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.714+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.715+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.715+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.716+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.716+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.716+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.717+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.718+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.719+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.724+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.725+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.725+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.726+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.726+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.727+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.729+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.730+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.732+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.732+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.734+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.735+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.736+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.737+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.738+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.739+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.740+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.742+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.743+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.743+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.744+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.744+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.745+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.745+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.747+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.748+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.749+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.750+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.750+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.751+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.752+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.752+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.754+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.754+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.757+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.757+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.758+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.758+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:58.759+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        locations
+        (created_at, district, state, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-08-14T12:21:59.393+05:30  INFO 18840 --- [carpool-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-14T12:22:03.397+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2026-08-14T12:22:03.397+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-08-14T12:22:05.258+05:30  INFO 18840 --- [carpool-backend] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-08-14T12:22:05.267+05:30  WARN 18840 --- [carpool-backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2026-08-14T12:22:09.152+05:30  INFO 18840 --- [carpool-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-08-14T12:22:15.986+05:30  INFO 18840 --- [carpool-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-08-14T12:22:16.024+05:30  INFO 18840 --- [carpool-backend] [main] com.carpool.CarpoolBackendApplication    : Started CarpoolBackendApplication in 100.92 seconds (process running for 103.076)
+2026-08-14T12:22:16.497+05:30 DEBUG 18840 --- [carpool-backend] [scheduling-1] org.hibernate.SQL                        : 
+    select
+        s1_0.id,
+        s1_0.amount,
+        s1_0.created_at,
+        s1_0.currency,
+        s1_0.expires_at,
+        s1_0.owner_id,
+        s1_0.payment_date,
+        s1_0.plan_id,
+        s1_0.provider,
+        s1_0.provider_payment_id,
+        s1_0.rejection_comment,
+        s1_0.reviewed_at,
+        s1_0.starts_at,
+        s1_0.status,
+        s1_0.updated_at,
+        s1_0.utr_number 
+    from
+        subscriptions s1_0
+2026-08-14T12:22:16.497+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.mobile=?
+2026-08-14T12:22:16.640+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    select
+        sp1_0.id,
+        sp1_0.active,
+        sp1_0.amount_paise,
+        sp1_0.code,
+        sp1_0.created_at,
+        sp1_0.currency,
+        sp1_0.description,
+        sp1_0.duration_months,
+        sp1_0.name,
+        sp1_0.updated_at 
+    from
+        subscription_plans sp1_0 
+    where
+        sp1_0.code=?
+2026-08-14T12:22:16.690+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (active, age, created_at, date_of_birth, gender, mobile, name, password_hash, role, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.690+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        subscription_plans
+        (active, amount_paise, code, created_at, currency, description, duration_months, name, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.690+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    select
+        sp1_0.id,
+        sp1_0.active,
+        sp1_0.amount_paise,
+        sp1_0.code,
+        sp1_0.created_at,
+        sp1_0.currency,
+        sp1_0.description,
+        sp1_0.duration_months,
+        sp1_0.name,
+        sp1_0.updated_at 
+    from
+        subscription_plans sp1_0 
+    where
+        sp1_0.code=?
+2026-08-14T12:22:16.690+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        ticket_categories tc1_0
+2026-08-14T12:22:16.740+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        subscription_plans
+        (active, amount_paise, code, created_at, currency, description, duration_months, name, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.740+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        ticket_categories
+        (code, created_at, for_role, label, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.740+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        ticket_categories
+        (code, created_at, for_role, label, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.740+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        ticket_categories
+        (code, created_at, for_role, label, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.740+05:30 DEBUG 18840 --- [carpool-backend] [main] org.hibernate.SQL                        : 
+    insert 
+    into
+        ticket_categories
+        (code, created_at, for_role, label, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:16.990+05:30  INFO 18840 --- [carpool-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-14T12:22:16.990+05:30  INFO 18840 --- [carpool-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-14T12:22:16.990+05:30  INFO 18840 --- [carpool-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-08-14T12:22:33.407+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2026-08-14T12:22:33.408+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-08-14T12:22:36.441+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.mobile=?
+2026-08-14T12:22:36.867+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.mobile=?
+2026-08-14T12:22:36.924+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:38.570+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (active, age, created_at, date_of_birth, gender, mobile, name, password_hash, role, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:38.580+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    insert 
+    into
+        refresh_tokens
+        (created_at, expires_at, ip_address, revoked, token_hash, updated_at, user_id, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:39.474+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@1537651074 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:22:39.525+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:39.556+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@1537651074 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:22:39.597+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:39.597+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] com.carpool.security.JwtAuthFilter       : JwtAuthFilter: request=/api/auth/me userId=189e7c9d-2405-458c-8b61-b37ed461e1ce tokenRole=OWNER tokenOwnerId= dbRole=OWNER dbOwnerId=null resolvedRole=OWNER resolvedOwnerId=null
+2026-08-14T12:22:39.597+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@1325879181 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:22:39.608+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:39.611+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-5] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@1325879181 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:22:39.691+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@1888109268 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:22:39.691+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:39.691+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@1888109268 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:22:39.691+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:39.691+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] com.carpool.security.JwtAuthFilter       : JwtAuthFilter: request=/api/owners userId=189e7c9d-2405-458c-8b61-b37ed461e1ce tokenRole=OWNER tokenOwnerId= dbRole=OWNER dbOwnerId=null resolvedRole=OWNER resolvedOwnerId=null
+2026-08-14T12:22:39.912+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:39.915+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:39.964+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        ps1_0.id,
+        ps1_0.auth,
+        ps1_0.created_at,
+        ps1_0.endpoint,
+        ps1_0.p256dh,
+        ps1_0.updated_at,
+        ps1_0.user_id 
+    from
+        push_subscriptions ps1_0 
+    where
+        ps1_0.user_id=?
+2026-08-14T12:22:53.026+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    insert 
+    into
+        owner_profiles
+        (average_rating, created_at, mobile, name, preferences, profile_photo_url, ratings_count, updated_at, user_id, verification_status, verified, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:53.026+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    insert 
+    into
+        notifications
+        (body, created_at, is_read, title, type, updated_at, user_id, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:53.110+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@1434382633 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:22:53.110+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:53.110+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@1434382633 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:22:53.110+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:53.132+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:53.143+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] com.carpool.security.JwtAuthFilter       : JwtAuthFilter: request=/api/rides userId=189e7c9d-2405-458c-8b61-b37ed461e1ce tokenRole=OWNER tokenOwnerId= dbRole=OWNER dbOwnerId=2893fdc4-5559-4150-be6e-3c4f904139d1 resolvedRole=OWNER resolvedOwnerId=2893fdc4-5559-4150-be6e-3c4f904139d1
+2026-08-14T12:22:53.259+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:53.259+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:53.391+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.mobile=?
+2026-08-14T12:22:53.405+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.mobile=?
+2026-08-14T12:22:53.493+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:53.493+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (active, age, created_at, date_of_birth, gender, mobile, name, password_hash, role, updated_at, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:53.493+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    insert 
+    into
+        refresh_tokens
+        (created_at, expires_at, ip_address, revoked, token_hash, updated_at, user_id, user_agent, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-08-14T12:22:53.510+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-10] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@618259609 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:22:53.513+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:53.516+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-10] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@618259609 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:22:53.517+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:53.518+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-10] com.carpool.security.JwtAuthFilter       : JwtAuthFilter: request=/api/bookings userId=3ed8f7e4-0f8b-4b50-a0ff-37db4ef9e12b tokenRole=PASSENGER tokenOwnerId= dbRole=PASSENGER dbOwnerId=null resolvedRole=PASSENGER resolvedOwnerId=null
+2026-08-14T12:22:54.650+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-1] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@403413657 wrapping conn0: url=jdbc:h2:mem:carshare user=SA] read-only
+2026-08-14T12:22:54.653+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:54.655+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-1] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@403413657 wrapping conn0: url=jdbc:h2:mem:carshare user=SA]
+2026-08-14T12:22:54.658+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        op1_0.id,
+        op1_0.average_rating,
+        op1_0.created_at,
+        op1_0.mobile,
+        op1_0.name,
+        op1_0.preferences,
+        op1_0.profile_photo_url,
+        op1_0.ratings_count,
+        op1_0.updated_at,
+        op1_0.user_id,
+        op1_0.verification_status,
+        op1_0.verified 
+    from
+        owner_profiles op1_0 
+    where
+        op1_0.user_id=?
+2026-08-14T12:22:54.660+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.active,
+        u1_0.age,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.gender,
+        u1_0.mobile,
+        u1_0.name,
+        u1_0.password_hash,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-08-14T12:22:54.663+05:30 DEBUG 18840 --- [carpool-backend] [http-nio-8080-exec-1] com.carpool.security.JwtAuthFilter       : JwtAuthFilter: request=/api/rides userId=189e7c9d-2405-458c-8b61-b37ed461e1ce tokenRole=OWNER tokenOwnerId= dbRole=OWNER dbOwnerId=2893fdc4-5559-4150-be6e-3c4f904139d1 resolvedRole=OWNER resolvedOwnerId=2893fdc4-5559-4150-be6e-3c4f904139d1
+2026-08-14T12:23:03.424+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2026-08-14T12:23:03.425+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-08-14T12:23:33.442+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2026-08-14T12:23:33.443+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-08-14T12:24:03.446+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2026-08-14T12:24:03.446+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-08-14T12:24:33.461+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2026-08-14T12:24:33.461+05:30 DEBUG 18840 --- [carpool-backend] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
