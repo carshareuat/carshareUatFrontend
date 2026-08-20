@@ -26,12 +26,16 @@ export interface UserTokenRegistration {
 export class MessageService {
   private messaging: Messaging | null = null;
   private initializationPromise: Promise<{ ok: boolean; message?: string; token?: string }> | null = null;
+  private nativePushInitialized = false;
   private readonly tokenKey = 'fcm_device_token';
   public notificationCount$ = new BehaviorSubject<number>(0);
   public foregroundMessage$ = new BehaviorSubject<PushNotificationMessage | null>(null);
 
   constructor(private http: HttpClient) {
-    this.initializeMessaging();
+    // Firebase Web Messaging must not be initialized inside the native WebView.
+    if (!Capacitor.isNativePlatform()) {
+      this.initializeMessaging();
+    }
   }
 
   async initializePushNotifications(): Promise<{ ok: boolean; message?: string; token?: string }> {
@@ -85,6 +89,10 @@ export class MessageService {
   }
 
   private async initializeNativePushNotifications(): Promise<{ ok: boolean; message?: string; token?: string }> {
+    if (this.nativePushInitialized) {
+      return { ok: true };
+    }
+
     try {
       const permission = await PushNotifications.requestPermissions();
       if (permission.receive !== 'granted') {
@@ -101,6 +109,7 @@ export class MessageService {
         PushNotifications.register().catch(reject);
       });
       const saved = await this.saveToken(registration, 'android');
+      this.nativePushInitialized = true;
       return saved ? { ok: true, token: registration } : { ok: false, message: 'Push token could not be saved.', token: registration };
     } catch (error) {
       console.error('Native push initialization failed', error);

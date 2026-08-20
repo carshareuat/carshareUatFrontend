@@ -1,4 +1,35 @@
-﻿.global-loader {
+﻿.launch-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #f8fafc;
+  background: #082f49;
+  animation: launch-exit .45s ease 1.75s forwards;
+}
+.launch-content { position: relative; z-index: 1; width: min(86vw, 430px); text-align: center; animation: launch-rise .8s cubic-bezier(.2,.8,.2,1) both; }
+.launch-mark { width: 116px; height: 116px; margin: 0 auto 24px; display:grid; place-items:center; border-radius: 32px; background:#fff; box-shadow: 0 18px 50px rgba(0,0,0,.24); animation: launch-mark-in .8s ease both; }
+.launch-mark img { width: 92px; height: auto; display:block; }
+.launch-kicker { margin:0 0 12px; color:#67e8f9; font-size:11px; font-weight:800; letter-spacing:.2em; }
+.launch-content h1 { margin:0; color:#f8fafc; font-size:clamp(2.3rem, 9vw, 4.2rem); line-height:.98; letter-spacing:0; }
+.launch-content h1 span { color:#fbbf24; }
+.launch-route { display:flex; align-items:center; width:150px; margin:30px auto 14px; }
+.route-dot { width:10px; height:10px; border:3px solid #67e8f9; border-radius:50%; box-sizing:content-box; }
+.route-dot-end { border-color:#fbbf24; }
+.route-line { flex:1; height:2px; margin:0 8px; background:linear-gradient(90deg,#67e8f9,#fbbf24); transform-origin:left; animation: route-grow 1s .45s ease both; }
+.launch-status { margin:0; color:#bae6fd; font-size:13px; letter-spacing:.04em; }
+.launch-glow { position:absolute; width:260px; height:260px; border-radius:50%; filter:blur(4px); opacity:.28; }
+.launch-glow-left { top:-100px; left:-90px; background:#0e7490; }
+.launch-glow-right { right:-110px; bottom:-80px; background:#b45309; }
+@keyframes launch-rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes launch-mark-in { from { opacity:0; transform:scale(.76) rotate(-5deg); } to { opacity:1; transform:scale(1) rotate(0); } }
+@keyframes route-grow { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes launch-exit { to { opacity:0; visibility:hidden; } }
+@media (prefers-reduced-motion: reduce) { .launch-screen, .launch-content, .launch-mark, .route-line { animation:none; } .launch-screen { display:none; } }
+
+.global-loader {
   position: fixed;
   inset: 0;
   display: grid;

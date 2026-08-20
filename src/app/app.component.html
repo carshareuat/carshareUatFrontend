@@ -1,4 +1,16 @@
-﻿<div class="app-shell">
+﻿<section class="launch-screen" *ngIf="showLaunchScreen" aria-label="Loading carShare">
+  <div class="launch-glow launch-glow-left"></div>
+  <div class="launch-glow launch-glow-right"></div>
+  <div class="launch-content">
+    <div class="launch-mark"><img src="assets/carShare-logo.png" alt="carShare" /></div>
+    <p class="launch-kicker">MOVE TOGETHER</p>
+    <h1>Every journey<br><span>is better shared.</span></h1>
+    <div class="launch-route" aria-hidden="true"><span class="route-dot"></span><span class="route-line"></span><span class="route-dot route-dot-end"></span></div>
+    <p class="launch-status">Finding your next route</p>
+  </div>
+</section>
+
+<div class="app-shell">
   <div class="global-loader" *ngIf="loading.isLoading$ | async" aria-live="polite" aria-busy="true">
     <div class="loader-panel">
       <div class="loader" aria-hidden="true">

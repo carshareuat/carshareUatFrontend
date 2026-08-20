@@ -18,11 +18,13 @@ import { filter } from 'rxjs';
 })
 export class AppComponent {
   title = 'carShare';
+  showLaunchScreen = true;
   menuOpen = false;
   private ownerSubscriptionLoaded = false;
   private ownerSubscriptionActive = false;
   private ownerSubscriptionInReview = false;
   constructor(private auth: AuthService, private router: Router, private data: MockDataService, private messageService: MessageService, public loading: LoadingService) {
+    setTimeout(() => this.showLaunchScreen = false, 2200);
     window.addEventListener('carshare-auth-changed', () => {
       if (this.auth.current) {
         this.initializePushNotifications();
