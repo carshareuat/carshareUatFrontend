@@ -9,6 +9,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 declare const L: any;
 import { ToastService } from './toast.service';
 import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
 
 
 interface Booking {
@@ -150,7 +151,7 @@ interface Booking {
       <div *ngIf="hasBooking?.status === 'accepted' && ride?.status === 'active'" class="mt-3">
         <h3>Live tracking</h3>
         <div class="muted-small">Track owner's location during the ride.</div>
-        <div style="margin-top:8px;display:flex;gap:8px">
+              <div class="tracking-actions" style="margin-top:8px;display:flex;gap:8px">
           <button class="btn btn-primary btn-sm" (click)="startTracking()" [disabled]="tracking || ride.status === 'completed'">Start tracking</button>
           <button class="btn btn-secondary btn-sm" (click)="trackCar()" [disabled]="tracking || ride.status === 'completed'">Track car</button>
           <button class="btn btn-secondary btn-sm" (click)="stopTracking()" [disabled]="!tracking">Stop tracking</button>
@@ -251,6 +252,9 @@ interface Booking {
       .detail-row { grid-template-columns: 1fr; gap: 12px; }
       .location { font-size: 16px; }
     }
+
+    .tracking-actions { flex-wrap: wrap; align-items: center; }
+    .tracking-actions .muted-small { flex: 1 1 100%; }
   `]
 })
 export class RideDetailComponent implements OnDestroy {
@@ -295,7 +299,7 @@ export class RideDetailComponent implements OnDestroy {
     return Number(this.owner?.averageRating ?? this.owner?.rating ?? 0);
   }
 
-  constructor(private route: ActivatedRoute, private data: MockDataService, private toast: ToastService, private auth: AuthService, private sanitizer: DomSanitizer) {
+  constructor(private route: ActivatedRoute, private data: MockDataService, private toast: ToastService, private auth: AuthService, private sanitizer: DomSanitizer, private http: HttpClient) {
     const id = this.route.snapshot.paramMap.get('id') || '';
     this.data.getRideById(id).subscribe((r) => {
       this.ride = r;
@@ -507,13 +511,20 @@ export class RideDetailComponent implements OnDestroy {
   private updateRouteLine() {
     if (!this.passengerMarker || this.trackLat === null || this.trackLon === null) return;
     const pLatLng = this.passengerMarker.getLatLng();
-    const oLatLng = L.latLng(this.trackLat, this.trackLon);
-    const coords = [pLatLng, oLatLng];
-    if (!this.routeLine) {
-      this.routeLine = L.polyline(coords, { color: 'blue', weight: 4, opacity: 0.7 }).addTo(this.map);
-    } else {
-      this.routeLine.setLatLngs(coords);
-    }
+    const routeUrl = `https://router.project-osrm.org/route/v1/driving/${pLatLng.lng},${pLatLng.lat};${this.trackLon},${this.trackLat}?overview=full&geometries=geojson`;
+    this.http.get<any>(routeUrl).subscribe({
+      next: (response) => {
+        const geometry = response?.routes?.[0]?.geometry?.coordinates;
+        if (!Array.isArray(geometry) || !geometry.length || !this.map) return;
+        const coords = geometry.map(([lon, lat]: [number, number]) => [lat, lon]);
+        if (!this.routeLine) {
+          this.routeLine = L.polyline(coords, { color: '#2563eb', weight: 4, opacity: 0.78 }).addTo(this.map);
+        } else {
+          this.routeLine.setLatLngs(coords);
+        }
+      },
+      error: () => { this.trackingError = 'Unable to load road route'; }
+    });
   }
 
   get mapEmbedUrl(): SafeResourceUrl {

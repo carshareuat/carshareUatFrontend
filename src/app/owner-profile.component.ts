@@ -48,7 +48,7 @@ import { firstValueFrom } from 'rxjs';
         <span *ngIf="mobileVerified" class="badge badge-success">✅ Mobile Verified</span>
         <span *ngIf="!mobileVerified && mobileVerificationStatus !== null" class="badge badge-error">❌ Mobile Not Verified</span>
         <span *ngIf="mobileVerificationStatus?.verifiedDate" class="muted-small">since {{ mobileVerificationStatus.verifiedDate | date:'mediumDate' }}</span>
-        <span *ngIf="!mobileVerified" class="muted-small badge badge-warning">⚠️ Please verify mobile to enable payments</span>
+        <!--<span *ngIf="!mobileVerified" class="muted-small badge badge-warning">⚠️ Please verify mobile to enable payments</span>-->
       </div>
 
       <hr />

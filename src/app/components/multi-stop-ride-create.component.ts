@@ -834,12 +834,19 @@ export class MultiStopRideCreateComponent implements OnInit {
     this.isSubmitting = true;
     this.errorMessage = '';
 
+    const pricingType = this.rideForm.get('pricingType')?.value as PricingType;
+    const journeyPrice = Number(this.rideForm.get('price')?.value);
+    const segmentPrices = (this.segmentPrices.value as SegmentPriceRule[]).map(segment => ({
+      ...segment,
+      price: pricingType === PricingType.FIXED ? journeyPrice : Number(segment.price)
+    }));
+
     const request: CreateMultiStopRideRequest = {
       stops: this.stops.value.map((stop: RideStop, index: number) => ({ ...stop, stopOrder: index })),
       date: this.rideForm.get('date')?.value,
-      pricingType: this.rideForm.get('pricingType')?.value as PricingType,
-      price: this.rideForm.get('price')?.value,
-      segmentPrices: this.segmentPrices.value as SegmentPriceRule[],
+      pricingType,
+      price: journeyPrice,
+      segmentPrices,
       carModel: this.rideForm.get('carModel')?.value,
       totalSeats: this.rideForm.get('totalSeats')?.value,
       femaleOnly: this.rideForm.get('femaleOnly')?.value

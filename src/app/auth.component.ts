@@ -121,6 +121,12 @@ import { LogoComponent } from './logo.component';
                 </div>
               </section>
 
+              <div class="field" *ngIf="isRegistering && role==='passenger'">
+                <label for="governmentIdInput">Government ID proof</label>
+                <input id="governmentIdInput" type="file" accept="image/*,.pdf" (change)="onGovernmentIdSelected($event)" />
+                <p *ngIf="governmentIdProof" class="muted-small">Government document selected.</p>
+              </div>
+
               <div class="field" *ngIf="isRegistering">
                 <label for="dobInput">Date of birth</label>
                 <div class="input-wrap"><span class="input-ic">🎂</span><input id="dobInput" type="date" [(ngModel)]="dateOfBirth" [max]="maxDob" /></div>
@@ -247,6 +253,7 @@ export class AuthComponent {
   isRegistering = false;
   maxDob = new Date().toISOString().slice(0, 10);
   photoData: string | null = null;
+  governmentIdProof: File | null = null;
   
   // OTP Verification state
   mobileVerified = false;
@@ -315,11 +322,12 @@ export class AuthComponent {
     if (!this.mobileVerified) { this.toast.show('Please verify your mobile number before registration.', 'warning'); return; }
     if (!this.firebaseUid) { this.toast.show('Mobile verification failed. Try again.', 'error'); return; }
     
-    this.auth.authenticate('register', 'passenger', this.mobile, '', this.dateOfBirth, this.name, this.gender, this.photoData || undefined, this.firebaseUid).subscribe({
+    if (!this.governmentIdProof) { this.toast.show('Please select your government ID proof.', 'warning'); return; }
+    this.auth.authenticate('register', 'passenger', this.mobile, '', this.dateOfBirth, this.name, this.gender, this.photoData || undefined, this.firebaseUid, this.governmentIdProof).subscribe({
       next: (session) => {
         this.mobileVerificationService.verifyMobileOnBackend(session.id, this.firebaseUid!, this.mobile).subscribe({
-          next: () => { this.captureLocationOnLogin(); this.router.navigateByUrl('/home'); },
-          error: () => { this.captureLocationOnLogin(); this.router.navigateByUrl('/home'); }
+          next: () => { this.captureLocationOnLogin(); this.router.navigate(['/home']); },
+          error: () => { this.captureLocationOnLogin(); this.router.navigate(['/home']); }
         });
       },
       error: (error) => this.showAuthError(error, 'Unable to register.')
@@ -339,8 +347,8 @@ export class AuthComponent {
     this.auth.authenticate('register', 'owner', this.mobile, '', this.dateOfBirth, undefined, this.gender, undefined, this.firebaseUid).subscribe({
       next: (session) => {
         this.mobileVerificationService.verifyMobileOnBackend(session.id, this.firebaseUid!, this.mobile).subscribe({
-          next: () => this.router.navigateByUrl('/owner/register'),
-          error: () => this.router.navigateByUrl('/owner/register')
+          next: () => this.router.navigate(['/owner/register']),
+          error: () => this.router.navigate(['/owner/register'])
         });
       },
       error: (error) => this.showAuthError(error, 'Unable to register owner.')
@@ -350,6 +358,11 @@ export class AuthComponent {
   loginOwner() {
     if (!this.validateCredentials(false)) return;
     this.handleOtpLogin('owner');
+  }
+
+  onGovernmentIdSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.governmentIdProof = input.files?.[0] || null;
   }
 
   openForm(mode: 'login' | 'register') {

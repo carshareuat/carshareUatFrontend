@@ -43,7 +43,7 @@ export class AuthService {
     return session;
   }
 
-  authenticate(mode: 'login' | 'register', role: 'passenger' | 'owner' | 'admin', mobile: string, password: string = '', dateOfBirth?: string, name?: string, gender?: string, photoDataUrl?: string, firebaseUid?: string): Observable<UserSession> {
+  authenticate(mode: 'login' | 'register', role: 'passenger' | 'owner' | 'admin', mobile: string, password: string = '', dateOfBirth?: string, name?: string, gender?: string, photoDataUrl?: string, firebaseUid?: string, governmentIdProof?: File): Observable<UserSession> {
     const payload: any = { role: role.toUpperCase(), mobile };
     if (password && password.trim()) payload.password = password;
     if (dateOfBirth) payload.dateOfBirth = dateOfBirth;
@@ -51,7 +51,7 @@ export class AuthService {
     if (gender) payload.gender = gender;
     if (firebaseUid) payload.firebaseUid = firebaseUid;
 
-    if (mode === 'register' && role === 'passenger' && photoDataUrl) {
+    if (mode === 'register' && role === 'passenger') {
       const form = new FormData();
       form.append('role', payload.role);
       form.append('mobile', payload.mobile);
@@ -60,7 +60,8 @@ export class AuthService {
       if (payload.name) form.append('name', payload.name);
       if (payload.gender) form.append('gender', payload.gender);
       if (payload.firebaseUid) form.append('firebaseUid', payload.firebaseUid);
-      form.append('profilePhoto', this.dataUrlToFile(photoDataUrl, 'profile-photo.png'));
+      if (photoDataUrl) form.append('profilePhoto', this.dataUrlToFile(photoDataUrl, 'profile-photo.png'));
+      if (governmentIdProof) form.append('governmentIdProof', governmentIdProof);
       return this.http.post<{ data: any }>(`${this.apiUrl}/${mode}`, form).pipe(
         tap((response) => this.handleAuthResponse(response.data, role)),
         map((response) => this.buildSession(response.data, role))

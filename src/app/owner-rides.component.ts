@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MockDataService, Ride, Owner } from './mock-data.service';
 import { AuthService } from './auth.service';
 import { ToastService } from './toast.service';
+import { HttpClient } from '@angular/common/http';
 
 declare const L: any;
 
@@ -38,12 +39,14 @@ declare const L: any;
             <div class="muted-small">Status: <strong>{{ r.status || 'active' }}</strong></div>
             <div *ngIf="!isDateValid(r.date)" class="muted-small" style="color:#b91c1c;">Invalid date. Please delete and recreate.</div>
             <div class="mt-1">
+                <div class="ride-actions mt-1">
               <button class="btn btn-success btn-sm" *ngIf="r.status!=='completed' && r.status!=='cancelled' && isDateValid(r.date)" (click)="markCompleted(r)">✓ Complete</button>
               <button class="btn btn-primary btn-sm" *ngIf="r.status==='active'" (click)="trackPassenger(r)" [disabled]="trackingRide?.id === r.id">Track passenger</button>
               <button class="btn btn-danger btn-sm" *ngIf="r.status!=='completed' && r.status!=='cancelled' && isDateValid(r.date)" (click)="openCancel(r)">✕ Cancel Ride</button>
               <button class="btn btn-secondary btn-sm" (click)="deleteRide(r)">🗑 Delete</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -56,7 +59,7 @@ declare const L: any;
         <span *ngIf="trackingUpdated" class="muted-small">Last updated: {{ trackingUpdated }}</span>
         <span *ngIf="trackingError" class="muted-small" style="color:#b91c1c">{{ trackingError }}</span>
       </div>
-      <div *ngIf="ownerLat !== null && passengerLat !== null" id="owner-passenger-map" style="width:100%;height:360px;margin-top:12px;border:1px solid #e6eef2;border-radius:6px;overflow:hidden"></div>
+      <div *ngIf="ownerLat !== null && passengerLat !== null" id="owner-passenger-map" class="tracking-map"></div>
     </section>
 
     <div class="modal-backdrop" *ngIf="cancellingRide">
@@ -78,7 +81,16 @@ declare const L: any;
         </div>
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    .ride-actions { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; align-items:stretch; }
+    .ride-actions .btn { width:100%; min-height:40px; white-space:normal; line-height:1.2; }
+    .tracking-map { width:100%; height:360px; margin-top:12px; border:1px solid #dbe4ea; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(15,23,42,.08); }
+    @media (max-width:560px) {
+      .ride-actions { grid-template-columns:1fr 1fr; }
+      .tracking-map { height:340px; }
+    }
+  `]
 })
 export class OwnerRidesComponent implements OnDestroy {
   myRides: Ride[] = [];
@@ -98,8 +110,9 @@ export class OwnerRidesComponent implements OnDestroy {
   private ownerMarker: any = null;
   private passengerMarker: any = null;
   private trackingLine: any = null;
+  private routeRequestKey = '';
 
-  constructor(private data: MockDataService, private auth: AuthService, private router: Router, private toast: ToastService) {
+  constructor(private data: MockDataService, private auth: AuthService, private router: Router, private toast: ToastService, private http: HttpClient) {
     const s = this.auth.current;
     if (!s || s.role !== 'owner') { this.router.navigateByUrl('/'); return; }
     this.ownerId = (s as any).ownerId || '';
@@ -183,18 +196,42 @@ export class OwnerRidesComponent implements OnDestroy {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(this.trackingMap);
       this.ownerMarker = L.marker([this.ownerLat, this.ownerLon]).addTo(this.trackingMap).bindTooltip('Your car');
       this.passengerMarker = L.marker([this.passengerLat, this.passengerLon]).addTo(this.trackingMap).bindTooltip('Passenger');
-      this.trackingLine = L.polyline([[this.ownerLat, this.ownerLon], [this.passengerLat, this.passengerLon]], { color: '#2563eb', weight: 4 }).addTo(this.trackingMap);
+      setTimeout(() => this.trackingMap?.invalidateSize(), 150);
     } else {
       this.ownerMarker.setLatLng([this.ownerLat, this.ownerLon]);
       this.passengerMarker.setLatLng([this.passengerLat, this.passengerLon]);
-      this.trackingLine.setLatLngs([[this.ownerLat, this.ownerLon], [this.passengerLat, this.passengerLon]]);
-      this.trackingMap.fitBounds([[this.ownerLat, this.ownerLon], [this.passengerLat, this.passengerLon]], { padding: [30, 30] });
     }
+    this.loadRoadRoute();
+  }
+
+  private loadRoadRoute() {
+    if (this.ownerLat === null || this.ownerLon === null || this.passengerLat === null || this.passengerLon === null || !this.trackingMap) return;
+    const key = `${this.ownerLat.toFixed(5)},${this.ownerLon.toFixed(5)}:${this.passengerLat.toFixed(5)},${this.passengerLon.toFixed(5)}`;
+    if (key === this.routeRequestKey) return;
+    this.routeRequestKey = key;
+    const url = `https://router.project-osrm.org/route/v1/driving/${this.ownerLon},${this.ownerLat};${this.passengerLon},${this.passengerLat}?overview=full&geometries=geojson`;
+    this.http.get<any>(url).subscribe({
+      next: response => {
+        const coordinates = response?.routes?.[0]?.geometry?.coordinates;
+        if (!Array.isArray(coordinates) || coordinates.length < 2) {
+          this.trackingError = 'Road route is unavailable for these locations';
+          return;
+        }
+        const roadPath = coordinates.map((point: number[]) => [point[1], point[0]]);
+        if (this.trackingLine) this.trackingMap.removeLayer(this.trackingLine);
+        this.trackingLine = L.polyline(roadPath, { color: '#2563eb', weight: 5, opacity: .9, lineJoin: 'round' }).addTo(this.trackingMap);
+        this.trackingMap.fitBounds(this.trackingLine.getBounds(), { padding: [28, 28] });
+        this.trackingError = null;
+      },
+      error: () => this.trackingError = 'Unable to load the road route'
+    });
   }
 
   stopPassengerTracking() {
     if (this.trackingTimer) { clearInterval(this.trackingTimer); this.trackingTimer = null; }
     if (this.trackingMap) { this.trackingMap.remove(); this.trackingMap = null; }
+    this.trackingLine = null;
+    this.routeRequestKey = '';
     this.trackingRide = null;
     this.ownerLat = this.ownerLon = this.passengerLat = this.passengerLon = null;
     this.trackingUpdated = null;

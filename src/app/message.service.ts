@@ -23,6 +23,7 @@ export interface UserTokenRegistration {
 @Injectable({ providedIn: 'root' })
 export class MessageService {
   private messaging: Messaging | null = null;
+  private initializationPromise: Promise<{ ok: boolean; message?: string; token?: string }> | null = null;
   private readonly tokenKey = 'fcm_device_token';
   public notificationCount$ = new BehaviorSubject<number>(0);
   public foregroundMessage$ = new BehaviorSubject<PushNotificationMessage | null>(null);
@@ -32,6 +33,19 @@ export class MessageService {
   }
 
   async initializePushNotifications(): Promise<{ ok: boolean; message?: string; token?: string }> {
+    if (this.initializationPromise) {
+      return this.initializationPromise;
+    }
+
+    this.initializationPromise = this.initializePushNotificationsInternal();
+    try {
+      return await this.initializationPromise;
+    } finally {
+      this.initializationPromise = null;
+    }
+  }
+
+  private async initializePushNotificationsInternal(): Promise<{ ok: boolean; message?: string; token?: string }> {
     if (!('Notification' in window) || !('serviceWorker' in navigator)) {
       return { ok: false, message: 'Push notifications are not supported in this browser.' };
     }
@@ -49,7 +63,10 @@ export class MessageService {
         return { ok: false, message: 'Push registration is blocked in this browser mode. Please use a normal browser window instead of Incognito/Private mode.' };
       }
 
-      await this.saveToken(token);
+      const saved = await this.saveToken(token);
+      if (!saved) {
+        return { ok: false, message: 'FCM token was generated but could not be saved to the server.', token };
+      }
       this.listenForMessages();
       return { ok: true, token };
     } catch (error) {

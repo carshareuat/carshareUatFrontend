@@ -25,19 +25,19 @@ export class AppComponent {
   constructor(private auth: AuthService, private router: Router, private data: MockDataService, private messageService: MessageService, public loading: LoadingService) {
     window.addEventListener('carshare-auth-changed', () => {
       if (this.auth.current) {
-        this.messageService.initializePushNotifications().catch(() => {});
+        this.initializePushNotifications();
       }
     });
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.refreshOwnerSubscription();
       if (this.auth.current) {
-        this.messageService.initializePushNotifications().catch(() => {});
+        this.initializePushNotifications();
       }
     });
     this.refreshOwnerSubscription();
     if (this.auth.current) {
-      this.messageService.initializePushNotifications().catch(() => {});
+      this.initializePushNotifications();
     }
     this.loadNotifications();
     // poll for new notifications every 15 seconds for near-real-time updates
@@ -48,6 +48,14 @@ export class AppComponent {
   unreadCount = 0;
   showNotifications = false;
   private seenNotificationIds = new Set<string>();
+
+  private initializePushNotifications() {
+    this.messageService.initializePushNotifications().then(result => {
+      if (!result.ok) {
+        console.warn('Push notifications are not ready:', result.message);
+      }
+    });
+  }
 
   loadNotifications() {
     if (!this.auth.current) return;
