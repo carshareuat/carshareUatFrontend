@@ -531,8 +531,6 @@ export class AuthComponent {
 
   private async initializeSessionServices() {
     await this.messageService.initializePushNotifications();
-    if (this.role === 'passenger') this.captureLocationOnLogin();
-    if (this.role === 'owner') this.captureOwnerLocationOnLogin();
   }
 
   private captureLocationOnLogin() {

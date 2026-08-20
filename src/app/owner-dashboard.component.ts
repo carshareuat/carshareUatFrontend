@@ -62,7 +62,6 @@ export class OwnerDashboardComponent {
 
   constructor(private data: MockDataService, private auth: AuthService, private toast: ToastService) {
     this.load();
-    this.startOwnerLocationWatchIfNeeded();
   }
 
   focusCreate() {
