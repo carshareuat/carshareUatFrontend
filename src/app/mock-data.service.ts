@@ -245,6 +245,10 @@ export class MockDataService {
     return this.http.get<ApiResponse<any>>(`${this.apiUrl}/rides/${rideId}/passenger-location`).pipe(map((r: any) => r.data || null));
   }
 
+  getBookingPassengerLocation(bookingId: string): Observable<{ lat: number; lon: number } | null> {
+    return this.http.get<ApiResponse<any>>(`${this.apiUrl}/bookings/${bookingId}/passenger-location`).pipe(map((r: any) => r.data || null));
+  }
+
   postPassengerLocation(passengerId: string, lat: number, lon: number) {
     return this.http.post<ApiResponse<any>>(`${this.apiUrl}/passengers/${passengerId}/location`, { lat, lon }).pipe(map((r: any) => r.data || null));
   }

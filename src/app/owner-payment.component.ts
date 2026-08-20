@@ -21,9 +21,11 @@ import { ToastService } from './toast.service';
         <div class="upi-box"><span class="muted-small">UPI ID</span><strong>{{ upiId }}</strong><button class="btn btn-secondary btn-sm" (click)="copyUpi()">Copy</button></div>
         <div class="payment-step"><span>02</span><div><strong>Confirm your transfer</strong><small>Enter the UTR shown in your UPI app</small></div></div>
         <div class="field"><label for="utr">UTR / transaction reference</label><input id="utr" [(ngModel)]="utrNumber" placeholder="e.g. 324567890123" [disabled]="submitted" /></div>
-        <button class="btn btn-primary btn-lg" (click)="submit()" [disabled]="submitted">{{ submitted ? 'Payment submitted' : 'Confirm payment' }}</button>
+        <div class="payment-actions">
+          <button class="btn btn-primary btn-lg" (click)="submit()" [disabled]="submitted">{{ submitted ? 'Payment submitted' : 'Confirm payment' }}</button>
+          <button class="btn btn-ghost" (click)="router.navigateByUrl('/owner/dashboard')">Return to dashboard</button>
+        </div>
         <div *ngIf="submitted" class="verification-note"><strong>Subscription verification in progress</strong><span>Your payment is being reviewed and will be approved in few minutes.</span></div>
-        <button class="btn btn-ghost" (click)="router.navigateByUrl('/owner/dashboard')">Return to dashboard</button>
       </section>
     </div>
   `,
@@ -44,7 +46,9 @@ import { ToastService } from './toast.service';
     .upi-box strong { flex:1; color:#115e59; font-size:1.05rem; user-select:all; }
     .verification-note { display:grid; gap:5px; margin-top:16px; padding:14px; border-radius:12px; background:#ecfdf5; border:1px solid #86efac; color:#166534; }
     .verification-note span { font-size:.9rem; color:#3f6212; }
-    @media (max-width:760px) { .payment-shell { grid-template-columns:1fr; padding-top:16px; } .payment-hero { padding:8px 4px; } .payment-hero h1 { font-size:3.2rem; } }
+    .payment-actions { display:grid; gap:10px; margin-top:20px; }
+    .payment-actions .btn { width:100%; min-height:46px; }
+    @media (max-width:760px) { .payment-shell { grid-template-columns:1fr; padding-top:16px; } .payment-hero { padding:8px 4px; } .payment-hero h1 { font-size:3.2rem; } .payment-card { padding:20px; } .upi-box { align-items:flex-start; flex-wrap:wrap; } .upi-box strong { min-width:0; overflow-wrap:anywhere; } }
   `]
 })
 export class OwnerPaymentComponent {

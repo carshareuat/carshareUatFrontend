@@ -22,9 +22,9 @@ import { ToastService } from './toast.service';
       <button class="btn btn-primary" (click)="goVerify()">Pay & Verify</button>
     </div>
 
-    <section class="card mb-2" *ngIf="verified">
-      <h3>➕ Create a new ride</h3>
-      <div class="form-row">
+    <section class="card mb-2 create-ride-card" *ngIf="verified">
+      <div class="form-heading"><div><span class="eyebrow">OWNER TOOLS</span><h2>Create a new ride</h2><p class="muted-small">Set your route, schedule, and available seats.</p></div><span class="form-step">01 / 01</span></div>
+      <div class="form-row ride-form">
         <div class="field"><label>From - State</label>
           <select [(ngModel)]="fromState" (change)="onFromStateChange()">
             <option value="">Select state</option>
@@ -62,10 +62,24 @@ import { ToastService } from './toast.service';
         </div>
         <div class="field"><label>Price (₹)</label><input type="number" min="0" [(ngModel)]="price" /></div>
         <div class="field"><label>Car Model</label><input placeholder="e.g. Hyundai i20" [(ngModel)]="carModel" /></div>
-        <button class="btn btn-primary" (click)="createRide()">Create Ride</button>
+        <div class="form-submit"><button class="btn btn-primary btn-lg" (click)="createRide()">Create Ride</button></div>
       </div>
     </section>
   `
+  styles: [`
+    .create-ride-card { padding:clamp(20px,4vw,36px); }
+    .form-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; margin-bottom:24px; }
+    .form-heading h2 { margin:5px 0 4px; color:#102a43; }
+    .eyebrow { color:#0f766e; font-size:11px; font-weight:800; letter-spacing:.12em; }
+    .form-step { color:#64748b; font-size:12px; font-weight:800; white-space:nowrap; }
+    .ride-form { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px; }
+    .ride-form .field { min-width:0; }
+    .ride-form input, .ride-form select { min-height:44px; }
+    .ride-form .field:has(input[type="checkbox"]) { align-self:center; }
+    .form-submit { grid-column:1 / -1; display:flex; justify-content:flex-end; padding-top:8px; border-top:1px solid #e2e8f0; }
+    .form-submit .btn { min-width:180px; }
+    @media (max-width:680px) { .form-heading { flex-direction:column; gap:8px; } .ride-form { grid-template-columns:1fr; } .form-submit { grid-column:auto; } .form-submit .btn { width:100%; } }
+  `]
 })
 export class OwnerCreateRideComponent {
   from = ''; to = ''; date = ''; startTime = ''; endTime = ''; seats = 1; price = 0; carModel = '';
@@ -149,9 +163,10 @@ export class OwnerCreateRideComponent {
 
   goVerify() { this.router.navigateByUrl('/owner/register'); }
 
-  createRide() {
+  async createRide() {
     if (!this.ownerId) { this.toast.show('Owner not set', 'error'); return; }
-    this.checkVerified();
+    const owner = await this.data.getOwnerById(this.ownerId).toPromise();
+    this.verified = !!owner?.verified;
     if (!this.verified) { this.toast.show('Complete subscription payment to post rides', 'warning'); return; }
     if (!this.from || !this.to) { this.toast.show('Enter from and to', 'warning'); return; }
     if (!this.isValidDate(this.date)) { this.toast.show('Enter a valid date (YYYY-MM-DD) that is today or later', 'warning'); return; }

@@ -4,6 +4,8 @@ import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { getMessaging, getToken, onMessage, MessagePayload, Messaging, deleteToken } from 'firebase/messaging';
 import { firebaseApp } from './firebase.config';
+import { Capacitor } from '@capacitor/core';
+import { PushNotifications } from '@capacitor/push-notifications';
 
 export interface PushNotificationMessage {
   title: string;
@@ -46,6 +48,9 @@ export class MessageService {
   }
 
   private async initializePushNotificationsInternal(): Promise<{ ok: boolean; message?: string; token?: string }> {
+    if (Capacitor.isNativePlatform()) {
+      return this.initializeNativePushNotifications();
+    }
     if (!('Notification' in window) || !('serviceWorker' in navigator)) {
       return { ok: false, message: 'Push notifications are not supported in this browser.' };
     }
@@ -76,6 +81,30 @@ export class MessageService {
         return { ok: false, message: 'Push notifications are blocked in this browser mode. Please open the app in a normal Chrome window to enable web notifications.' };
       }
       return { ok: false, message };
+    }
+  }
+
+  private async initializeNativePushNotifications(): Promise<{ ok: boolean; message?: string; token?: string }> {
+    try {
+      const permission = await PushNotifications.requestPermissions();
+      if (permission.receive !== 'granted') {
+        return { ok: false, message: 'Notification permission was denied.' };
+      }
+
+      const registration = await new Promise<string>((resolve, reject) => {
+        let registrationListener: { remove: () => Promise<void> } | null = null;
+        PushNotifications.addListener('registration', token => {
+          registrationListener?.remove();
+          resolve(token.value);
+        }).then(listener => registrationListener = listener);
+        PushNotifications.addListener('registrationError', error => reject(error)).catch(reject);
+        PushNotifications.register().catch(reject);
+      });
+      const saved = await this.saveToken(registration, 'android');
+      return saved ? { ok: true, token: registration } : { ok: false, message: 'Push token could not be saved.', token: registration };
+    } catch (error) {
+      console.error('Native push initialization failed', error);
+      return { ok: false, message: 'Native push notifications could not be initialized.' };
     }
   }
 
@@ -136,7 +165,7 @@ export class MessageService {
     }
   }
 
-  async saveToken(token: string): Promise<boolean> {
+  async saveToken(token: string, deviceType = 'web'): Promise<boolean> {
     const trimmed = token?.trim();
     if (!trimmed) {
       return false;
@@ -148,7 +177,7 @@ export class MessageService {
     try {
       const payload: UserTokenRegistration = {
         token: trimmed,
-        deviceType: 'web'
+        deviceType
       };
 
       console.log('Sending FCM token to backend. tokenLength=', trimmed.length);

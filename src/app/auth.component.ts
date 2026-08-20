@@ -326,8 +326,8 @@ export class AuthComponent {
     this.auth.authenticate('register', 'passenger', this.mobile, '', this.dateOfBirth, this.name, this.gender, this.photoData || undefined, this.firebaseUid, this.governmentIdProof).subscribe({
       next: (session) => {
         this.mobileVerificationService.verifyMobileOnBackend(session.id, this.firebaseUid!, this.mobile).subscribe({
-          next: () => { this.captureLocationOnLogin(); this.router.navigate(['/home']); },
-          error: () => { this.captureLocationOnLogin(); this.router.navigate(['/home']); }
+          next: () => { this.initializeSessionServices(); this.router.navigate(['/home']); },
+          error: () => { this.initializeSessionServices(); this.router.navigate(['/home']); }
         });
       },
       error: (error) => this.showAuthError(error, 'Unable to register.')
@@ -347,8 +347,8 @@ export class AuthComponent {
     this.auth.authenticate('register', 'owner', this.mobile, '', this.dateOfBirth, undefined, this.gender, undefined, this.firebaseUid).subscribe({
       next: (session) => {
         this.mobileVerificationService.verifyMobileOnBackend(session.id, this.firebaseUid!, this.mobile).subscribe({
-          next: () => this.router.navigate(['/owner/register']),
-          error: () => this.router.navigate(['/owner/register'])
+          next: () => { this.initializeSessionServices(); this.router.navigate(['/owner/register']); },
+          error: () => { this.initializeSessionServices(); this.router.navigate(['/owner/register']); }
         });
       },
       error: (error) => this.showAuthError(error, 'Unable to register owner.')
@@ -481,7 +481,10 @@ export class AuthComponent {
     this.auth.authenticate('login', this.role, this.mobile, '', undefined, undefined, undefined, undefined, this.firebaseUid || undefined).subscribe({
       next: (session) => {
         this.auth.save(session);
-        const navigate = () => this.role === 'owner' ? this.router.navigateByUrl('/owner/dashboard') : this.router.navigateByUrl('/home');
+        const navigate = () => {
+          this.initializeSessionServices();
+          return this.role === 'owner' ? this.router.navigateByUrl('/owner/dashboard') : this.router.navigateByUrl('/home');
+        };
         if (this.firebaseUid) {
           this.mobileVerificationService.verifyMobileOnBackend(session.id, this.firebaseUid, this.mobile).subscribe({ next: navigate, error: navigate });
         } else {
@@ -521,10 +524,12 @@ export class AuthComponent {
       return;
     }
 
+    if (this.role === 'owner') this.loginOwner(); else this.loginPassenger();
+  }
+
+  private initializeSessionServices() {
     if (this.role === 'passenger') this.captureLocationOnLogin();
     if (this.role === 'owner') this.captureOwnerLocationOnLogin();
-
-    if (this.role === 'owner') this.loginOwner(); else this.loginPassenger();
   }
 
   private captureLocationOnLogin() {

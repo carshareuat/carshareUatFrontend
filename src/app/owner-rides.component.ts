@@ -41,7 +41,6 @@ declare const L: any;
             <div class="mt-1">
                 <div class="ride-actions mt-1">
               <button class="btn btn-success btn-sm" *ngIf="r.status!=='completed' && r.status!=='cancelled' && isDateValid(r.date)" (click)="markCompleted(r)">✓ Complete</button>
-              <button class="btn btn-primary btn-sm" *ngIf="r.status==='active'" (click)="trackPassenger(r)" [disabled]="trackingRide?.id === r.id">Track passenger</button>
               <button class="btn btn-danger btn-sm" *ngIf="r.status!=='completed' && r.status!=='cancelled' && isDateValid(r.date)" (click)="openCancel(r)">✕ Cancel Ride</button>
               <button class="btn btn-secondary btn-sm" (click)="deleteRide(r)">🗑 Delete</button>
             </div>
@@ -49,17 +48,6 @@ declare const L: any;
         </div>
         </div>
       </div>
-    </section>
-
-    <section class="card mb-2" *ngIf="trackingRide">
-      <h3>Passenger tracking: {{ trackingRide.from }} → {{ trackingRide.to }}</h3>
-      <div class="muted-small">Owner and passenger locations refresh every 60 seconds.</div>
-      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-        <button class="btn btn-secondary btn-sm" (click)="stopPassengerTracking()">Stop tracking</button>
-        <span *ngIf="trackingUpdated" class="muted-small">Last updated: {{ trackingUpdated }}</span>
-        <span *ngIf="trackingError" class="muted-small" style="color:#b91c1c">{{ trackingError }}</span>
-      </div>
-      <div *ngIf="ownerLat !== null && passengerLat !== null" id="owner-passenger-map" class="tracking-map"></div>
     </section>
 
     <div class="modal-backdrop" *ngIf="cancellingRide">
@@ -150,15 +138,6 @@ export class OwnerRidesComponent implements OnDestroy {
       next: () => this.load(),
       error: () => this.toast.show('Unable to update ride', 'error')
     });
-  }
-
-  trackPassenger(ride: Ride) {
-    if (ride.status === 'completed' || ride.status === 'cancelled') return;
-    this.stopPassengerTracking();
-    this.trackingRide = ride;
-    this.trackingError = null;
-    this.pollPassengerTracking();
-    this.trackingTimer = setInterval(() => this.pollPassengerTracking(), 60000);
   }
 
   private pollPassengerTracking() {
