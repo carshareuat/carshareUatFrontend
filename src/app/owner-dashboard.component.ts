@@ -141,26 +141,4 @@ export class OwnerDashboardComponent {
     this.toast.show('Booking ' + action, 'success');
   }
 
-  private startOwnerLocationWatchIfNeeded() {
-    try {
-      const s = this.auth.current;
-      const ownerId = s && (s as any).ownerId ? (s as any).ownerId : s ? s.id : undefined;
-      if (!ownerId) return;
-      if (!navigator.geolocation) { this.toast.show('Geolocation unavailable', 'warning'); return; }
-      // request a one-time position to ensure permission prompt
-      navigator.geolocation.getCurrentPosition((pos) => {
-        try { this.data.postOwnerLocation(ownerId, pos.coords.latitude, pos.coords.longitude).subscribe(() => {}, () => {}); } catch {}
-        try {
-          const watchId = navigator.geolocation.watchPosition((p) => {
-            try { this.data.postOwnerLocation(ownerId, p.coords.latitude, p.coords.longitude).subscribe(() => {}, () => {}); } catch {}
-          }, (err) => {}, { enableHighAccuracy: true, maximumAge: 1000 });
-          localStorage.setItem('owner_location_watch', String(watchId));
-        } catch {}
-      }, (err) => {
-        // user denied or other error
-      }, { enableHighAccuracy: true, timeout: 10000 });
-    } catch (e) {
-      // ignore
-    }
-  }
 }
