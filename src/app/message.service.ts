@@ -89,6 +89,10 @@ export class MessageService {
   }
 
   private async initializeNativePushNotifications(): Promise<{ ok: boolean; message?: string; token?: string }> {
+    if (!(environment as any).nativePushEnabled) {
+      return { ok: false, message: 'Native push notifications are not configured for this build.' };
+    }
+
     if (this.nativePushInitialized) {
       return { ok: true };
     }

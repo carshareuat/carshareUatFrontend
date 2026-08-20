@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  nativePushEnabled: true,
   apiBaseUrl: 'https://modest-encouragement-production-c485.up.railway.app/api',
   vapidPublic: 'BNbFlsJ2BU9ZVnOG2XEfhF6yZOT-KFKhLDN5EIl_CuhZ2XmdDzn95x_qqpsUs0dX8vWvQDEYHvhGgV9tPm5uiwo',
   firebase: {

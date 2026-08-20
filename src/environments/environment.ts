@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  nativePushEnabled: true,
   apiBaseUrl: 'http://localhost:8080/api',
   // apiBaseUrl: 'https://modest-encouragement-production-c485.up.railway.app/api',
   vapidPublic: 'BNbFlsJ2BU9ZVnOG2XEfhF6yZOT-KFKhLDN5EIl_CuhZ2XmdDzn95x_qqpsUs0dX8vWvQDEYHvhGgV9tPm5uiwo',

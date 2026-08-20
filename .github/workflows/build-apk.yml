@@ -25,6 +25,11 @@ jobs:
       - name: Copy Angular Build to Android
         run: npx cap sync android
 
+      - name: Configure Firebase Android
+        env:
+          FIREBASE_GOOGLE_SERVICES_JSON: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
+        run: printf '%s' "$FIREBASE_GOOGLE_SERVICES_JSON" > android/app/google-services.json
+
       - name: Build APK
         run: |
           cd android
