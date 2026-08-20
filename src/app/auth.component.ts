@@ -8,6 +8,7 @@ import { ToastService } from './toast.service';
 import { OtpVerificationService } from './services/otp-verification.service';
 import { OtpLoginService } from './services/otp-login.service';
 import { MobileVerificationService } from './services/mobile-verification.service';
+import { MessageService } from './message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LogoComponent } from './logo.component';
 
@@ -273,7 +274,8 @@ export class AuthComponent {
     private toast: ToastService,
     private otpService: OtpVerificationService,
     private otpLoginService: OtpLoginService,
-    private mobileVerificationService: MobileVerificationService
+    private mobileVerificationService: MobileVerificationService,
+    private messageService: MessageService
   ) {
     const s = this.auth.current;
     if (s) {
@@ -481,8 +483,8 @@ export class AuthComponent {
     this.auth.authenticate('login', this.role, this.mobile, '', undefined, undefined, undefined, undefined, this.firebaseUid || undefined).subscribe({
       next: (session) => {
         this.auth.save(session);
-        const navigate = () => {
-          this.initializeSessionServices();
+        const navigate = async () => {
+          await this.initializeSessionServices();
           return this.role === 'owner' ? this.router.navigateByUrl('/owner/dashboard') : this.router.navigateByUrl('/home');
         };
         if (this.firebaseUid) {
@@ -527,7 +529,8 @@ export class AuthComponent {
     if (this.role === 'owner') this.loginOwner(); else this.loginPassenger();
   }
 
-  private initializeSessionServices() {
+  private async initializeSessionServices() {
+    await this.messageService.initializePushNotifications();
     if (this.role === 'passenger') this.captureLocationOnLogin();
     if (this.role === 'owner') this.captureOwnerLocationOnLogin();
   }

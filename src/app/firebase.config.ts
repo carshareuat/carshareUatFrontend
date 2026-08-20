@@ -1,6 +1,5 @@
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
-import { getMessaging, Messaging } from 'firebase/messaging';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCcEi3Yt_oGlU_AZu4qQ7YEfICFZljdRDY',
@@ -13,7 +12,6 @@ export const firebaseConfig = {
 
 export const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth: Auth = getAuth(firebaseApp);
-export const firebaseMessaging: Messaging = getMessaging(firebaseApp);
 
 /**
  * Firebase Phone Authentication Configuration
